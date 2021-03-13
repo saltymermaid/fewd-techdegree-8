@@ -19,6 +19,9 @@ const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
 const modalClose = document.querySelector(".modal-close");
+const modalNav = document.querySelector(".modal-nav");
+const modalNext = document.querySelector(".modal-next");
+const modalPrev = document.querySelector(".modal-prev");
 
 fetch(urlAPI)
 .then(res => res.json())
@@ -76,15 +79,19 @@ function displayModal(index) {
     modal.removeChild(deleteModal)
   };
   createEmployee(index, modal, 'modal-content', true)
+  if (index === 11) {
+    modalNext.classList.add("hidden");
+  }
+  if (index === 0) {
+    modalPrev.classList.add("hidden");
+  }
   overlay.classList.remove("hidden");
 }
 
 gridContainer.addEventListener('click', e => {
-  // make sure the click is not on the gridContainer itself
   if (e.target !== gridContainer) {
-  // select the card element based on its proximity to actual element clicked
     const card = e.target.closest(".card");
-    const index = card.getAttribute('data-index');
+    const index = parseInt(card.getAttribute('data-index'));
     displayModal(index);
     }
   });
@@ -98,3 +105,23 @@ overlay.addEventListener('click', (e) => {
     overlay.classList.add("hidden");
   }
 });
+
+modalNav.addEventListener('click', (e) => {
+  const navButtons = Array.from(modalNav.children);
+  navButtons.forEach(button => {
+    button.classList.remove("hidden");
+  })
+  const employeeIndex = document.querySelector('.modal-content');
+  if (e.target === modalNext) {
+    const nextEmployee = parseInt(employeeIndex.dataset.index) + 1;
+    if (nextEmployee < 12) {
+      displayModal(nextEmployee);
+    };
+  } else if (e.target === modalPrev) {
+    const prevEmployee = parseInt(employeeIndex.dataset.index) - 1;
+    if (prevEmployee >= 0) {
+      displayModal(prevEmployee);
+    };
+  }
+});
+

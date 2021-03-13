@@ -2,6 +2,10 @@
 /*              Typography                       */
 /* ============================================= */
 
+h1 {
+  text-transform: uppercase;
+}
+
 h2 {
   font-size: $font-m;
   color: $main-text;
