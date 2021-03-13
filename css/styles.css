@@ -348,14 +348,20 @@ template {
 /* ============================================= */
 h2 {
   font-size: 17px;
-  color: #26302E;
+  color: #28302e;
   margin: 0;
 }
 
-.text-container > p {
+.text-container .email,
+.text-container .location {
+  color: #8c9996;
   font-size: 12px;
-  color: #7F8C89;
-  margin: 0;
+  margin: 2px 0;
+}
+.text-container .additional {
+  color: #8c9996;
+  font-size: 12px;
+  margin: 5px 0;
 }
 
 /* ============================================= */
@@ -363,7 +369,7 @@ h2 {
 /* ============================================= */
 * {
   font-family: "Lato", sans-serif;
-  color: #26302E;
+  color: #28302e;
   box-sizing: border-box;
 }
 
@@ -386,6 +392,7 @@ body {
   margin: 0 auto;
   width: 95%;
   background-color: #f3faf8;
+  position: relative;
 }
 
 .grid-container {
@@ -423,10 +430,54 @@ body {
   margin: auto;
 }
 
+.modal .avatar {
+  width: 50%;
+  padding: 10px;
+}
+
 .card {
   border: 1px solid #00AA92;
   border-radius: 5px;
   background-color: #fbfffe;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(38, 48, 46, 0.4);
+}
+
+.modal {
+  width: 375px;
+  margin: 15% auto auto;
+  position: relative;
+  text-align: center;
+  background: #f3faf8;
+  border: 1px solid #00AA92;
+  border-radius: 5px;
+  padding: 30px 20px;
+}
+
+hr {
+  width: 95%;
+}
+
+.modal-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  color: #00AA92;
+  background-color: #B4DDD5;
+  border: none;
+  border-radius: 2px;
+}
+
+.hidden {
+  display: none;
 }
 
 /* ============================================= */

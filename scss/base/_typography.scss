@@ -8,8 +8,16 @@ h2 {
   margin: 0;
 }
 
-.text-container > p {
-  font-size: $font-s;
-  color: $light-text;
-  margin: 0;
+.text-container {
+  .email,
+  .location {
+    color: $light-text;
+    font-size: $font-s;
+    margin: 2px 0;
+  }
+  .additional {
+    color: $light-text;
+    font-size: $font-s;
+    margin: 5px 0;
+  }
 }

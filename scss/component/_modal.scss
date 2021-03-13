@@ -1,0 +1,38 @@
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $background-modal;
+}
+
+.modal {
+  width: 375px;
+  margin: 15% auto auto;
+  position: relative;
+  text-align: center;
+  background: $background;
+  border: 1px solid $bright;
+  border-radius: 5px;
+  padding: 30px 20px;
+}
+
+hr {
+  width: 95%;
+}
+
+.modal-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+  color: $bright;
+  background-color: $accent-light;
+  border: none;
+  border-radius: 2px;
+}
+
+.hidden {
+  display: none;
+}
