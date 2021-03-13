@@ -1,0 +1,35 @@
+/* ============================================= */
+/*              Layout                      */
+/* ============================================= */
+
+body {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 95%;
+  background-color: $background;
+}
+
+.grid-container {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 25px;
+}
+
+.card-contents {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-areas: "image data";
+  padding: 20px;
+}
+
+.avatar {
+  grid-area: image;
+}
+
+.text-container {
+  grid-area: data;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

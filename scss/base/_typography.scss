@@ -1,0 +1,15 @@
+/* ============================================= */
+/*              Typography                       */
+/* ============================================= */
+
+h2 {
+  font-size: $font-m;
+  color: $main-text;
+  margin: 0;
+}
+
+.text-container > p {
+  font-size: $font-s;
+  color: $light-text;
+  margin: 0;
+}
