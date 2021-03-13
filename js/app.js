@@ -142,5 +142,6 @@ function handleSearch() {
   displayEmployees(filteredEmployees);
 }
 
+search.addEventListener('search', handleSearch);
 search.addEventListener('keyup', handleSearch);
 
