@@ -402,7 +402,7 @@ body {
   grid-gap: 25px;
 }
 
-.card-contents {
+.card {
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-template-areas: "image data";
@@ -439,6 +439,14 @@ body {
   border: 1px solid #00AA92;
   border-radius: 5px;
   background-color: #fbfffe;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem #00AA92);
+}
+
+.card:hover {
+  background-color: #00AA92;
+}
+.card:hover * {
+  color: #fbfffe;
 }
 
 .overlay {

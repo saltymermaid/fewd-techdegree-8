@@ -2,4 +2,12 @@
   border: 1px solid $bright;
   border-radius: 5px;
   background-color: $light;
+  filter: drop-shadow(.1rem .1rem .1rem $bright);
+}
+
+.card:hover {
+  background-color: $bright;
+  & * {
+    color: $light;
+  }
 }
