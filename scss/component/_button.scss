@@ -2,4 +2,10 @@
 /*              Buttons                          */
 /* ============================================= */
 
-
+button {
+  cursor: pointer;
+  color: $bright;
+  background-color: $accent-light;
+  border: none;
+  border-radius: 2px;
+}

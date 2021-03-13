@@ -14,7 +14,8 @@ function createWithTextAndAddToElement(elem, content, classy, adult) {
 }
 
 let employees = [];
-const urlAPI = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo`
+let filteredEmployees = [];
+const urlAPI = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,ie,au,ca,nz`
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
@@ -26,23 +27,18 @@ const modalPrev = document.querySelector(".modal-prev");
 fetch(urlAPI)
 .then(res => res.json())
 .then(res => res.results)
+.then(copyEmployees)
 .then(displayEmployees)
 .catch(err => console.log(err))
 
+function copyEmployees(allEmployees) {
+  employees = allEmployees;
+  filteredEmployees = allEmployees;
+  return allEmployees;
+}
+
 function createEmployee(index, grandparent, parentClass, modal=false) {
-  const {
-    name,
-    dob,
-    phone,
-    email,
-    location: {
-      city,
-      street,
-      state,
-      postcode
-    },
-    picture
-  } = employees[index];
+  const {name, dob, phone, email, location: {city, street, state, postcode}, picture} = filteredEmployees[index];
   const date = new Date(dob.date);
   const parent = createAndAddToElement('div', 'class', parentClass, grandparent)
   parent.setAttribute('data-index', index)
@@ -67,25 +63,34 @@ function createEmployee(index, grandparent, parentClass, modal=false) {
 }
 
 function displayEmployees(employeeData) {
-  employees = employeeData;
-  for (let i = 0; i < employees.length; i++) {
+  employeesToDisplay = employeeData;
+  for (let i = 0; i < employeesToDisplay.length; i++) {
     createEmployee(i, gridContainer, 'card')
   };
 }
 
 function displayModal(index) {
+  const navButtons = Array.from(modalNav.children);
+  navButtons.forEach(button => {
+    button.classList.remove("hidden");
+  });
   const deleteModal = modal.querySelector('.modal-content');
   if (deleteModal) {
     modal.removeChild(deleteModal)
   };
   createEmployee(index, modal, 'modal-content', true)
-  if (index === 11) {
+  displayModalNav(index);
+  overlay.classList.remove("hidden");
+}
+
+function displayModalNav(index) {
+  const size = filteredEmployees.length;
+  if (index === size - 1) {
     modalNext.classList.add("hidden");
   }
   if (index === 0) {
     modalPrev.classList.add("hidden");
   }
-  overlay.classList.remove("hidden");
 }
 
 gridContainer.addEventListener('click', e => {
@@ -107,14 +112,11 @@ overlay.addEventListener('click', (e) => {
 });
 
 modalNav.addEventListener('click', (e) => {
-  const navButtons = Array.from(modalNav.children);
-  navButtons.forEach(button => {
-    button.classList.remove("hidden");
-  })
   const employeeIndex = document.querySelector('.modal-content');
+  displayModalNav(parseInt(employeeIndex.dataset.index));
   if (e.target === modalNext) {
     const nextEmployee = parseInt(employeeIndex.dataset.index) + 1;
-    if (nextEmployee < 12) {
+    if (nextEmployee < filteredEmployees.length) {
       displayModal(nextEmployee);
     };
   } else if (e.target === modalPrev) {
@@ -124,4 +126,21 @@ modalNav.addEventListener('click', (e) => {
     };
   }
 });
+
+function handleSearch() {
+  let search = document.querySelector('#search').value;
+  search = search.toLowerCase();
+  filteredEmployees = [];
+  gridContainer.innerHTML = '';
+
+  employees.forEach(employee => {
+    employeeName = `${employee.name.first} ${employee.name.last}`;
+    if (employeeName.toLowerCase().includes(search)) {
+      filteredEmployees.push(employee);
+    }
+  })
+  displayEmployees(filteredEmployees);
+}
+
+search.addEventListener('keyup', handleSearch);
 

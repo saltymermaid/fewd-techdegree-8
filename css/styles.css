@@ -388,6 +388,14 @@ a {
 /* ============================================= */
 /*              Buttons                          */
 /* ============================================= */
+button {
+  cursor: pointer;
+  color: #00AA92;
+  background-color: #B4DDD5;
+  border: none;
+  border-radius: 2px;
+}
+
 /* ============================================= */
 /*              Layout                      */
 /* ============================================= */
@@ -397,7 +405,7 @@ html {
 }
 
 body {
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 95%;
   background-color: #f3faf8;
@@ -414,7 +422,10 @@ body {
   display: grid;
   grid-template-columns: 2fr 3fr;
   grid-template-areas: "image data";
+  height: 150px;
+  width: 300px;
   padding: 20px;
+  margin: auto;
 }
 
 .avatar {
@@ -485,20 +496,40 @@ hr {
   position: absolute;
   right: 5px;
   top: 5px;
-  cursor: pointer;
-  color: #00AA92;
-  background-color: #B4DDD5;
-  border: none;
-  border-radius: 2px;
+}
+
+.modal-prev,
+.modal-next {
+  position: absolute;
+  top: 50%;
+}
+
+.modal-prev {
+  left: 5px;
+}
+
+.modal-next {
+  right: 5px;
 }
 
 .hidden {
   display: none;
 }
 
-/* ============================================= */
-/*              Navigation                       */
-/* ============================================= */
+.search-box {
+  height: 100px;
+  display: flex;
+  align-items: center;
+}
+
+#search {
+  margin: auto;
+  height: 35px;
+  width: 50%;
+  border: 2px solid #7FB6AC;
+  border-radius: 4px;
+}
+
 /* ============================================= */
 /*              Media Queries                    */
 /* ============================================= */

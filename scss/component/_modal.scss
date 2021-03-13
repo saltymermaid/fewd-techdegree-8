@@ -26,11 +26,20 @@ hr {
   position: absolute;
   right: 5px;
   top: 5px;
-  cursor: pointer;
-  color: $bright;
-  background-color: $accent-light;
-  border: none;
-  border-radius: 2px;
+}
+
+.modal-prev,
+.modal-next {
+  position: absolute;
+  top: 50%;
+}
+
+.modal-prev {
+  left: 5px;
+}
+
+.modal-next {
+  right: 5px;
 }
 
 .hidden {
