@@ -1,11 +1,3 @@
-// $.ajax({
-//   url: 'https://randomuser.me/api/',
-//   dataType: 'json',
-//   success: function(data) {
-//     console.log(data);
-//   }
-// });
-
 function createAndAddToElement(elem, attrib, details, adult) {
   let element = document.createElement(elem);
   element.setAttribute(attrib, details);
@@ -35,7 +27,6 @@ fetch(urlAPI)
 .catch(err => console.log(err))
 
 function createEmployee(index, grandparent, parentClass, modal=false) {
-  console.log(employees[index]);
   const {
     name,
     dob,
@@ -80,6 +71,10 @@ function displayEmployees(employeeData) {
 }
 
 function displayModal(index) {
+  const deleteModal = modal.querySelector('.modal-content');
+  if (deleteModal) {
+    modal.removeChild(deleteModal)
+  };
   createEmployee(index, modal, 'modal-content', true)
   overlay.classList.remove("hidden");
 }
@@ -87,14 +82,19 @@ function displayModal(index) {
 gridContainer.addEventListener('click', e => {
   // make sure the click is not on the gridContainer itself
   if (e.target !== gridContainer) {
-  // select the card element based on its proximity to actual element
-  clicked
-  const card = e.target.closest(".card");
-  const index = card.getAttribute('data-index');
-  displayModal(index);
-  }
+  // select the card element based on its proximity to actual element clicked
+    const card = e.target.closest(".card");
+    const index = card.getAttribute('data-index');
+    displayModal(index);
+    }
   });
 
-  modalClose.addEventListener('click', () => {
+modalClose.addEventListener('click', () => {
+  overlay.classList.add("hidden");
+});
+
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) {
     overlay.classList.add("hidden");
-    });
+  }
+});

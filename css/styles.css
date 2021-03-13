@@ -387,12 +387,16 @@ a {
 /* ============================================= */
 /*              Layout                      */
 /* ============================================= */
+html {
+  position: relative;
+  height: 100vw;
+}
+
 body {
   max-width: 1200px;
   margin: 0 auto;
   width: 95%;
   background-color: #f3faf8;
-  position: relative;
 }
 
 .grid-container {
