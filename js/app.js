@@ -63,21 +63,16 @@ function createEmployee(index, grandparent, parentClass, modal=false) {
 }
 
 function displayEmployees(employeeData) {
-  employeesToDisplay = employeeData;
-  for (let i = 0; i < employeesToDisplay.length; i++) {
-    createEmployee(i, gridContainer, 'card')
-  };
+  employeeData.forEach((_employee, index) => {
+    createEmployee(index, gridContainer, 'card')
+  })
 }
 
 function displayModal(index) {
   const navButtons = Array.from(modalNav.children);
-  navButtons.forEach(button => {
-    button.classList.remove("hidden");
-  });
+  navButtons.forEach(button => button.classList.remove("hidden"));
   const deleteModal = modal.querySelector('.modal-content');
-  if (deleteModal) {
-    modal.removeChild(deleteModal)
-  };
+  if (deleteModal) modal.removeChild(deleteModal);
   createEmployee(index, modal, 'modal-content', true)
   displayModalNav(index);
   overlay.classList.remove("hidden");
@@ -85,12 +80,8 @@ function displayModal(index) {
 
 function displayModalNav(index) {
   const size = filteredEmployees.length;
-  if (index === size - 1) {
-    modalNext.classList.add("hidden");
-  }
-  if (index === 0) {
-    modalPrev.classList.add("hidden");
-  }
+  if (index === size - 1) modalNext.classList.add("hidden");
+  if (index === 0) modalPrev.classList.add("hidden");
 }
 
 gridContainer.addEventListener('click', e => {
