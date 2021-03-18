@@ -15,7 +15,7 @@ function createWithTextAndAddToElement(elem, content, classy, adult) {
 
 let employees = [];
 let filteredEmployees = [];
-const urlAPI = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,phone,dob&noinfo&nat=us,gb,ie,au,ca,nz`
+const urlAPI = `https://randomuser.me/api/?results=12&inc=name,picture,email,location,cell,dob&noinfo&nat=us,gb,ie,au,ca,nz`
 const gridContainer = document.querySelector(".grid-container");
 const overlay = document.querySelector(".overlay");
 const modal = document.querySelector(".modal");
@@ -38,7 +38,7 @@ function copyEmployees(allEmployees) {
 }
 
 function createEmployee(index, grandparent, parentClass, modal=false) {
-  const {name, dob, phone, email, location: {city, street, state, postcode}, picture} = filteredEmployees[index];
+  const {name, dob, cell, email, location: {city, street, state, postcode}, picture} = filteredEmployees[index];
   const date = new Date(dob.date);
   const parent = createAndAddToElement('div', 'class', parentClass, grandparent)
   parent.setAttribute('data-index', index)
@@ -51,7 +51,7 @@ function createEmployee(index, grandparent, parentClass, modal=false) {
   if (modal) {
     let hr = document.createElement('hr');
     textContainer.appendChild(hr);
-    createWithTextAndAddToElement('p', phone, 'additional', textContainer )
+    createWithTextAndAddToElement('p', cell, 'additional', textContainer )
     createWithTextAndAddToElement(
       'p',
       `${street.number} ${street.name}, ${city}, ${state} ${postcode}`,
